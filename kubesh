@@ -1,0 +1,10 @@
+#!/bin/sh
+if [ ${#@} -lt 1 ]; then
+    echo "usage: kubesh <pod> [shell]"
+    exit 1
+fi
+SHELL="sh"
+if [ ${#@} -gt 1 ]; then
+    SHELL=${@:2}
+fi
+kubectl exec -ti ${1} ${SHELL}
